@@ -64,9 +64,12 @@ class Ui_self(QWidget):
         self.typeShipment.addItem("")
         self.typeShipment.setObjectName(u"typeShipment")
         self.typeShipment.setMinimumSize(QSize(0, 30))
+        self.typeShipment.currentTextChanged.connect(self.AircompanyTextCombo)
 
         self.horizontalLayout.addWidget(self.typeShipment)
 
+        self.airCompanyList = ['Air France','Air Royal','Ethiopian','Turkish Airlines','DHL','FedEx']
+        self.seaCompanyList = ['Mediterranean Shipping Company (MSC)','Maers','CMA CGM','COSCO','Hapag-Lloyd','Pacific International Lines (PIL)']
         self.companiesBox = QComboBox(self)
         self.companiesBox.setObjectName(u"companiesBox")
         self.companiesBox.setMinimumSize(QSize(200, 30))
@@ -400,6 +403,12 @@ class Ui_self(QWidget):
         self.retranslateUi()
 
         self.typeShipment.setCurrentIndex(0)
+    def AircompanyTextCombo(self):
+        self.companiesBox.clear()
+        if self.typeShipment.currentText() == "Air":
+            self.companiesBox.addItems(sorted(self.airCompanyList,reverse=False))
+        elif self.typeShipment.currentText() == "Sea":
+            self.companiesBox.addItems(sorted(self.seaCompanyList, reverse=False))
     # setupUi
 
     def retranslateUi(self):
