@@ -4,9 +4,9 @@ import pandas as pd
 import SST_Gui
 
 class ethiopian:
-    def __init__(self):
-        print(SST_Gui.air['Ethiopian'])
-        url = "https://cargo.ethiopianairlines.com/e-cargo/cargotrack?awbnumber={}".format(SST_Gui.air['Ethiopian'])
+    def __init__(self,awb):
+        self.awb = awb
+        url = "https://cargo.ethiopianairlines.com/e-cargo/cargotrack?awbnumber={}".format(self.awb)
         driver = webdriver.Chrome()
         driver.get(url)
         info = ['Origin','Destination','Pieces','Volume','AWB','Weight']

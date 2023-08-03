@@ -429,7 +429,7 @@ class Ui_self(QWidget):
             air['Turkish Airlines'] = self.trackingNumberLine.text()
     def commit(self):
         if self.companiesBox.currentText() == "Ethiopian":
-            airCargoTrack.ethiopian()
+            airCargoTrack.ethiopian(air['Ethiopian'])
             print("Hello")
     # setupUi
 
