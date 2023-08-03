@@ -3,6 +3,9 @@ from PyQt5 import QtGui, QtCore
 from PyQt5.QtGui import QIcon, QFont, QCursor, QPixmap
 from PyQt5.QtCore import Qt, QSize, QCoreApplication
 import sys
+import airCargoTrack
+
+air = {'Air France':"",'Air Royal':"",'Ethiopian':"",'Turkish Airlines':"",'DHL':"",'FedEx':""}
 
 class Ui_self(QWidget):
     def __init__(self):
@@ -73,6 +76,7 @@ class Ui_self(QWidget):
         self.companiesBox = QComboBox(self)
         self.companiesBox.setObjectName(u"companiesBox")
         self.companiesBox.setMinimumSize(QSize(200, 30))
+        self.companiesBox.currentTextChanged.connect(self.airCompanyAWB)
 
         self.horizontalLayout.addWidget(self.companiesBox)
 
@@ -80,6 +84,7 @@ class Ui_self(QWidget):
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMinimumSize(QSize(0, 30))
         self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton.clicked.connect(self.commit)
 
         self.horizontalLayout.addWidget(self.pushButton)
 
@@ -409,6 +414,23 @@ class Ui_self(QWidget):
             self.companiesBox.addItems(sorted(self.airCompanyList,reverse=False))
         elif self.typeShipment.currentText() == "Sea":
             self.companiesBox.addItems(sorted(self.seaCompanyList, reverse=False))
+    def airCompanyAWB(self):
+        if self.companiesBox.currentText() == "Air France":
+            air["Air France"] = self.trackingNumberLine.text()
+        if self.companiesBox.currentText() == "Air Royal":
+            air['Air Royal'] = self.trackingNumberLine.text()
+        if self.companiesBox.currentText() == "DHL":
+            air['DHL'] = self.trackingNumberLine.text()
+        if self.companiesBox.currentText() == "FedEx":
+            air['FedEx'] = self.trackingNumberLine.text()
+        if self.companiesBox.currentText() == 'Ethiopian':
+            air['Ethiopian'] = self.trackingNumberLine.text()
+        if self.companiesBox.currentText() == "Turkish Airlines":
+            air['Turkish Airlines'] = self.trackingNumberLine.text()
+    def commit(self):
+        if self.companiesBox.currentText() == "Ethiopian":
+            airCargoTrack.ethiopian()
+            print("Hello")
     # setupUi
 
     def retranslateUi(self):
