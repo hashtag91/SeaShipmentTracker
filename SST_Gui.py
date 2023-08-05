@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt, QSize, QCoreApplication
 import sys
 import airCargoTrack
 
-air = {'Air France':"",'Air Royal':"",'Ethiopian':"",'Turkish Airlines':"",'DHL':"",'FedEx':""}
+air = {'Air France':"",'Air Royal':"",'Ethiopian':"",'Turkish Airlines':"",'DHL':"",'FedEx':"",'UPS Air Cargo' : "",'EgyptAir':"",'British Airways':""}
 
 class Ui_self(QWidget):
     def __init__(self):
@@ -55,6 +55,7 @@ class Ui_self(QWidget):
         self.trackingNumberLine.setObjectName(u"trackingNumberLine")
         self.trackingNumberLine.setStyleSheet(u"background-color : transparent;\n"
 "border : none;")
+        self.trackingNumberLine.textChanged.connect(self.textChamps)
 
         self.horizontalLayout_2.addWidget(self.trackingNumberLine)
 
@@ -71,7 +72,7 @@ class Ui_self(QWidget):
 
         self.horizontalLayout.addWidget(self.typeShipment)
 
-        self.airCompanyList = ['Air France','Air Royal','Ethiopian','Turkish Airlines','DHL','FedEx']
+        self.airCompanyList = ['Air France','Air Royal','Ethiopian','Turkish Airlines','DHL','FedEx','UPS Air Cargo','EgyptAir','British Airways']
         self.seaCompanyList = ['Mediterranean Shipping Company (MSC)','Maers','CMA CGM','COSCO','Hapag-Lloyd','Pacific International Lines (PIL)']
         self.companiesBox = QComboBox(self)
         self.companiesBox.setObjectName(u"companiesBox")
@@ -403,11 +404,39 @@ class Ui_self(QWidget):
         self.verticalLayout.setStretch(2, 3)
 
         self.verticalLayout_2.addLayout(self.verticalLayout)
+        self.AWB_list = ""
 
 
         self.retranslateUi()
 
         self.typeShipment.setCurrentIndex(0)
+        
+    def textChamps(self):
+        self.AWB_list = self.trackingNumberLine.text()
+        if self.AWB_list[:3] == '071':
+            self.typeShipment.setCurrentText('Air')
+            self.companiesBox.setCurrentText('Ethiopian')
+        if self.AWB_list[:3] == '057':
+            self.typeShipment.setCurrentText('Air')
+            self.companiesBox.setCurrentText('Air France')
+        if self.AWB_list[:3] == '235':
+            self.typeShipment.setCurrentText('Air')
+            self.companiesBox.setCurrentText('Turkish Airlines')
+        if self.AWB_list[:3] == '406':
+            self.typeShipment.setCurrentText('Air')
+            self.companiesBox.setCurrentText('UPS Air Cargo')
+        if self.AWB_list[:3] == '423':
+            self.typeShipment.setCurrentText('Air')
+            self.companiesBox.setCurrentText('DHL')
+        if self.AWB_list[:3] == '023':
+            self.typeShipment.setCurrentText('Air')
+            self.companiesBox.setCurrentText('FedEx')
+        if self.AWB_list[:3] == '077':
+            self.typeShipment.setCurrentText('Air')
+            self.companiesBox.setCurrentText('EgyptAir')
+        if self.AWB_list[:3] == '125':
+            self.typeShipment.setCurrentText('Air')
+            self.companiesBox.setCurrentText('British Airways')
     def AircompanyTextCombo(self):
         self.companiesBox.clear()
         if self.typeShipment.currentText() == "Air":
@@ -427,10 +456,23 @@ class Ui_self(QWidget):
             air['Ethiopian'] = self.trackingNumberLine.text()
         if self.companiesBox.currentText() == "Turkish Airlines":
             air['Turkish Airlines'] = self.trackingNumberLine.text()
+        if self.companiesBox.currentText() == 'UPS Air Cargo':
+            air['UPS Air Cargo'] = self.trackingNumberLine.text()
+        if self.companiesBox.currentText() == 'UPS Air Cargo':
+            air['EgyptAir'] = self.trackingNumberLine.text()
+        if self.companiesBox.currentText() == 'British Airways':
+            air['British Airways'] = self.trackingNumberLine.text()
     def commit(self):
+        if self.typeShipment.currentText() == 'Air':
+            self.typeTextLab.setText("Pieces")
         if self.companiesBox.currentText() == "Ethiopian":
             airCargoTrack.ethiopian(air['Ethiopian'])
-            print("Hello")
+            self.originTextLab.setText(airCargoTrack.ethiopian.resultFonction()[0])
+            self.destinaTextLab.setText(airCargoTrack.ethiopian.resultFonction()[1])
+            self.qtyTextLab.setText(airCargoTrack.ethiopian.resultFonction()[2])
+            self.weightTextLab.setText(airCargoTrack.ethiopian.resultFonction()[5])
+  
+
     # setupUi
 
     def retranslateUi(self):

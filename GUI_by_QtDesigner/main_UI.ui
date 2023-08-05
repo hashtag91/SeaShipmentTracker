@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>675</width>
-    <height>428</height>
+    <height>423</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -642,6 +642,7 @@ border : none;</string>
  </widget>
  <resources>
   <include location="icon.qrc"/>
+  <include location="../../../../.designer/backup/icon.qrc"/>
  </resources>
  <connections/>
 </ui>
