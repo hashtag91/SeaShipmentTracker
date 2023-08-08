@@ -3,19 +3,38 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import pandas as pd
 import SST_Gui
+from datetime import datetime
 result = []
 class ethiopian:
-    def __init__(self,awb):
+    def __init__(self,awb:str):
         self.awb = awb
         url = f"https://cargo.ethiopianairlines.com/e-cargo/cargotrack?awbnumber={self.awb}"
         option = webdriver.ChromeOptions()
         option.add_argument('--headless')
-        driver = webdriver.Chrome(options=option)
+        driver = webdriver.Chrome(option)
         driver.get(url)
-        info = ['Origin','Destination','Pieces','Volume','AWB','Weight']
-        ItemsXPath = ['/html/body/div[4]/div[2]/table[1]/tbody/tr/td[1]','/html/body/div[4]/div[2]/table[1]/tbody/tr/td[2]','/html/body/div[4]/div[2]/table[1]/tbody/tr/td[3]','/html/body/div[4]/div[2]/table[1]/tbody/tr/td[4]','/html/body/div[4]/div[2]/table[1]/tbody/tr/td[5]','/html/body/div[4]/div[2]/table[1]/tbody/tr/td[6]']
-        for infoCompt, XPath in enumerate(ItemsXPath):
-            data = driver.find_element(By.XPATH,XPath)
-            result.append(f"{data.text}")
+        elements = driver.find_elements(By.CLASS_NAME,'details-control')
+        origin = driver.find_element(By.XPATH,"/html/body/div[4]/div[2]/table[1]/tbody/tr/td[1]")
+        infos = []
+        for i in elements:
+            i.click()
+            elementSingle = driver.find_elements(By.CSS_SELECTOR,'td')
+            infos.extend(a.text for a in elementSingle)
+        infoSorting = infos[-10:]
+        infoSortedUp = infoSorting[:6]
+        infoSortedDown = infoSorting[-2:]
+        result.extend(iter(infoSortedUp))
+        result.extend(iter(infoSortedDown))
+        dateSplte = []
+        for splite in infoSortedUp[3]:
+            dateSplte.append(splite)
+        dateInfo = {'date':"".join(dateSplte[0:2]),'month':"".join(dateSplte[2:5]),'year':"".join(dateSplte[5:7])}
+        month = {'JAN':1,'FEB':2,'MAR':3,'APR':4,'MAY':5,'JUN':6,'JUL':7,'AUG':8,'SEP':9,'OCT':10,'NOV':11,'DEC':12}
+        today = datetime.now().strftime('%y-%m-%d')
+        obtainedDate = datetime(int("20{}".format(dateInfo['year'])),month[dateInfo['month']],int(dateInfo['date'])).strftime('%y-%m-%d')
+        comp = today >= obtainedDate
+        result.append(comp)
+        result[0] = origin.text
+        print(result)
     def resultFonction():
         return result

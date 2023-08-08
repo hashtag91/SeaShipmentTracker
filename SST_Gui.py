@@ -469,9 +469,14 @@ class Ui_self(QWidget):
             airCargoTrack.ethiopian(air['Ethiopian'])
             self.originTextLab.setText(airCargoTrack.ethiopian.resultFonction()[0])
             self.destinaTextLab.setText(airCargoTrack.ethiopian.resultFonction()[1])
-            self.qtyTextLab.setText(airCargoTrack.ethiopian.resultFonction()[2])
+            self.qtyTextLab.setText(airCargoTrack.ethiopian.resultFonction()[4])
             self.weightTextLab.setText(airCargoTrack.ethiopian.resultFonction()[5])
-  
+            self.currentPTextLab.setText(airCargoTrack.ethiopian.resultFonction()[6])
+            self.ship_Flight_Text_Lab.setText(airCargoTrack.ethiopian.resultFonction()[2])
+            if airCargoTrack.ethiopian.resultFonction()[-1] == True:
+                self.ATATextLab.setText(airCargoTrack.ethiopian.resultFonction()[3])
+            else:
+                self.ETATextLab.setText(airCargoTrack.ethiopian.resultFonction()[3])
 
     # setupUi
 
