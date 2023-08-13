@@ -25,13 +25,19 @@ class ethiopian:
         infoSortedDown = infoSorting[-2:]
         result.extend(iter(infoSortedUp))
         result.extend(iter(infoSortedDown))
-        dateSplte = []
-        for splite in infoSortedUp[3]:
-            dateSplte.append(splite)
-        dateInfo = {'date':"".join(dateSplte[0:2]),'month':"".join(dateSplte[2:5]),'year':"".join(dateSplte[5:7])}
+        dateSplte = list(infoSortedUp[3])
+        dateInfo = {
+            'date': "".join(dateSplte[:2]),
+            'month': "".join(dateSplte[2:5]),
+            'year': "".join(dateSplte[5:7]),
+        }
         month = {'JAN':1,'FEB':2,'MAR':3,'APR':4,'MAY':5,'JUN':6,'JUL':7,'AUG':8,'SEP':9,'OCT':10,'NOV':11,'DEC':12}
         today = datetime.now().strftime('%y-%m-%d')
-        obtainedDate = datetime(int("20{}".format(dateInfo['year'])),month[dateInfo['month']],int(dateInfo['date'])).strftime('%y-%m-%d')
+        obtainedDate = datetime(
+            int(f"20{dateInfo['year']}"),
+            month[dateInfo['month']],
+            int(dateInfo['date']),
+        ).strftime('%y-%m-%d')
         comp = today >= obtainedDate
         result.append(comp)
         result[0] = origin.text

@@ -6,6 +6,7 @@ import sys
 import airCargoTrack
 
 air = {'Air France':"",'Air Royal':"",'Ethiopian':"",'Turkish Airlines':"",'DHL':"",'FedEx':"",'UPS Air Cargo' : "",'EgyptAir':"",'British Airways':""}
+ctnList = []
 
 class Ui_self(QWidget):
     def __init__(self):
@@ -309,6 +310,8 @@ class Ui_self(QWidget):
         self.ETATextLab.setObjectName(u"ETATextLab")
         self.ETATextLab.setAlignment(Qt.AlignCenter)
 
+        self.ctn = QComboBox(self.groupBox)
+        
         self.verticalLayout_17.addWidget(self.ETATextLab)
 
 
@@ -360,7 +363,8 @@ class Ui_self(QWidget):
         self.horizontalLayout_7 = QHBoxLayout()
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
+        self.horizontalLayout_7.addWidget(self.ctn)
+        
         self.horizontalLayout_7.addItem(self.horizontalSpacer)
 
         self.moreButton = QPushButton(self.groupBox)
@@ -368,7 +372,9 @@ class Ui_self(QWidget):
         self.moreButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_7.addWidget(self.moreButton)
-
+        self.horizontalLayout_7.setStretch(0,2)
+        self.horizontalLayout_7.setStretch(1,1)
+        self.horizontalLayout_7.setStretch(2,1)
 
         self.verticalLayout_4.addLayout(self.horizontalLayout_7)
 
