@@ -41,6 +41,5 @@ class ethiopian:
         comp = today >= obtainedDate
         result.append(comp)
         result[0] = origin.text
-        print(result)
     def resultFonction():
         return result

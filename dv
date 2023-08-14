@@ -1,0 +1,59 @@
+[33mcommit b7696aede62f5ed29ec04361f9cf54059bb49ce8[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: hashtag91 <camarayacouba91@gmail.com>
+Date:   Sun Aug 13 15:55:55 2023 +0000
+
+    Creation du fichier seaCargoTrack et la création de la classe msc
+
+[33mcommit 432bd7254bf8abd0edfb8414bb8019403caffb6b[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Yacouba Camara <camarayacouba91@gmail.com>
+Date:   Tue Aug 8 06:18:40 2023 +0000
+
+    Correction dans le code de scraping pour la compagnie Ethiopian mais il reste encore quelques problème à corriger
+
+[33mcommit c54a652ebfa7cce7e81fe2e6879e2ab704e67877[m
+Author: Yacouba Camara <camarayacouba91@gmail.com>
+Date:   Sat Aug 5 02:53:51 2023 +0000
+
+    Ajout et automatisation de selcetion de compagnie aerienne
+
+[33mcommit ba16c2b77dd7b481e6a3fdbe3dc1411fa0fba1fc[m
+Author: Yacouba Camara <camarayacouba91@gmail.com>
+Date:   Thu Aug 3 06:02:05 2023 +0000
+
+    Recuperation de AWB number pour completer le lien de scraping Ethiopian effectuer
+
+[33mcommit 5e876f1813ca4be93900065a0bbdf82e6f220817[m
+Author: Yacouba Camara <camarayacouba91@gmail.com>
+Date:   Thu Aug 3 05:28:18 2023 +0000
+
+    Creation de fichier scraping pour les sites de tracking. \n- Codage de scraping pour la comagnies Ethiopian. \n- Attribuer le AWB number à la compagnie correspondante dans la variable air. \n- Reste maintenant la recuperation de AWB number Ethiopian depuis la variable air de SST_Gui vers airCargoTrack pour completer le lien de tracking.
+
+[33mcommit f68b9ccc41df616bf698893660832ca45e3ce79a[m
+Author: Yacouba Camara <camarayacouba91@gmail.com>
+Date:   Wed Aug 2 16:44:01 2023 +0000
+
+    Connectez le combox des compagnies de transport à celui du type de transport pour afficher les compagnies adéquats par rapport au type choisi
+
+[33mcommit 107d6fa014e281c0ca2769c5c57df1b1122fb903[m
+Author: Yacouba Camara <camarayacouba91@gmail.com>
+Date:   Tue Aug 1 17:14:31 2023 +0000
+
+    Transfert de QtDesigner UI vers python
+
+[33mcommit 2174cebadf71d2364b1e537904a43f2811290692[m
+Author: Yacouba Camara <camarayacouba91@gmail.com>
+Date:   Tue Aug 1 16:29:40 2023 +0000
+
+    Ajout de l'interface graphique construit avec QtDesigner
+
+[33mcommit 1c15026ba0050fbd21f06125438dc63241573905[m
+Author: Yacouba Camara <camarayacouba91@gmail.com>
+Date:   Tue Aug 1 14:56:36 2023 +0000
+
+    Fenetre principale vide
+
+[33mcommit 4c6e2b43fe6360e62403e3fff10d0d5bfa3a74ed[m
+Author: hashtag91 <camarayacouba91@gmail.com>
+Date:   Tue Aug 1 14:36:51 2023 +0000
+
+    Initial commit

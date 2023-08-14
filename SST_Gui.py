@@ -4,6 +4,7 @@ from PyQt5.QtGui import QIcon, QFont, QCursor, QPixmap
 from PyQt5.QtCore import Qt, QSize, QCoreApplication
 import sys
 import airCargoTrack
+import seaCargoTrack
 
 air = {'Air France':"",'Air Royal':"",'Ethiopian':"",'Turkish Airlines':"",'DHL':"",'FedEx':"",'UPS Air Cargo' : "",'EgyptAir':"",'British Airways':""}
 ctnList = []
@@ -483,6 +484,10 @@ class Ui_self(QWidget):
                 self.ATATextLab.setText(airCargoTrack.ethiopian.resultFonction()[3])
             else:
                 self.ETATextLab.setText(airCargoTrack.ethiopian.resultFonction()[3])
+        if self.companiesBox.currentText() == "Mediterranean Shipping Company (MSC)":
+            seaCargoTrack.msc(self.trackingNumberLine.text())
+            self.originTextLab.setText(seaCargoTrack.msc.getGeneralInfo()[0])
+            self.destinaTextLab.setText(seaCargoTrack.msc.getGeneralInfo()[1])
 
     # setupUi
 
